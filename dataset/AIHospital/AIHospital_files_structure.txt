@@ -1,0 +1,2 @@
+[DIR] AIHospital
+    [FILE] patients.json
