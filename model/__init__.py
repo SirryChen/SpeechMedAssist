@@ -1,0 +1,2 @@
+from .language_model.s2t_model_arch import SpeechQwen2ForCausalLM, SpeechQwen2Config
+from .language_model.s2s_model_arch import Speech2SQwen2ForCausalLM
