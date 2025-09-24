@@ -2,6 +2,9 @@
 
 SpeechMedAssist is a SpeechLM designed for speech-based multi-turn medical consultation, which can natively analyze symptoms, conduct proactive inquiries, and provide diagnostic and treatment suggestions.
 
+![Data construction, model architecture, and training strategy](./image/main.svg)
+
+
 ## 0.Environment
 
 To run our model, the following steps are required:
@@ -10,8 +13,11 @@ conda create -n SpeechMedAssist python=3.10
 pip install -r requirements.txt
 ```
 
-To run all baselines in our paper, the following steps are required:
+To run all baselines in our paper, we need to use some functions in the original projects. the following steps are required:
 ```shell
+git clone https://github.com/zai-org/GLM-4-Voice.git ../GLM-4-Voice
+git clone https://github.com/MoonshotAI/Kimi-Audio.git ../Kimi-Audio
+git clone https://github.com/OpenMOSS/SpeechGPT-2.0-preview.git ../SpeechGPT-2.0-preview
 conda create -n SpeechGPT2 python=3.10
 pip install -r requirements_SpeechGPT2.txt
 conda create -n KimiAudio python=3.10

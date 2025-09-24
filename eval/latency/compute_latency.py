@@ -73,7 +73,7 @@ if __name__ == "__main__":
         args.stream_support = False
     elif TEST_MODEL == "SpeechGPT2":
         from inference.SpeechGPT2 import SpeechGPT2 as Model
-        args.doctor_model_path = "../../../SpeechGPT-2.0-preview"
+        args.doctor_model_path = "../../weight/SpeechGPT-2.0-preview"
         args.stream_support = False
     elif TEST_MODEL == "Zhongjing":
         from inference.Zhongjing import Zhongjing as Model

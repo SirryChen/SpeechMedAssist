@@ -207,7 +207,7 @@ if __name__ == "__main__":
         model = SpeechMedAssist(model_path="../../weight/stage2/checkpoint-5000")
     elif TEST_MODEL == "SpeechGPT2":
         from inference.SpeechGPT2 import SpeechGPT2
-        model = SpeechGPT2(model_path="../../../SpeechGPT-2.0-preview", max_new_token=64)
+        model = SpeechGPT2(model_path="../../weight/SpeechGPT-2.0-preview", max_new_token=64)
     elif TEST_MODEL == "Baichuan2":
         from inference.Baichuan2 import Baichuan2
         model = Baichuan2(model_path=f"../../weight/Baichuan2-7B")
