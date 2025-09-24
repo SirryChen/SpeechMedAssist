@@ -133,8 +133,6 @@ lazy_loader==0.4
 librosa==0.10.2
 lightning==2.2.4
 lightning-utilities==0.14.3
-# Editable install with no version control (llama_omni2==1.0.0)
--e /inspire/hdd/project/socialsimulation/chensiyuan-CZXS24210113/speechmed/SpeechMedAssist
 llvmlite==0.44.0
 loguru==0.7.3
 loralib==0.1.2
@@ -143,7 +141,7 @@ Markdown==3.8.2
 markdown-it-py==3.0.0
 markdown2==2.5.2
 MarkupSafe==2.1.5
-matcha-tts @ file:///inspire/hdd/project/socialsimulation/chensiyuan-CZXS24210113/speechmed/SpeechMedAssist/CosyVoice/third_party/Matcha-TTS
+matcha-tts
 matplotlib==3.10.1
 matplotlib-inline==0.1.7
 mdurl==0.1.2
@@ -301,8 +299,8 @@ tqdm==4.67.1
 traitlets==5.14.3
 transformers==4.43.4
 triton==2.3.1
-ttsfrd @ file:///inspire/hdd/project/socialsimulation/chensiyuan-CZXS24210113/speechmed/SpeechMedAssist/weight/CosyVoice-ttsfrd/ttsfrd-0.4.2-cp310-cp310-linux_x86_64.whl#sha256=149514a05c2a7a01076170d2923efd231fc579f8e48403ab523814c8256efe14
-ttsfrd-dependency @ file:///inspire/hdd/project/socialsimulation/chensiyuan-CZXS24210113/speechmed/SpeechMedAssist/weight/CosyVoice-ttsfrd/ttsfrd_dependency-0.1-py3-none-any.whl#sha256=060a53f0650d12839983afdcfb052b049d7cf5c62344a00fee3a7344582aaf6f
+ttsfrd
+ttsfrd-dependency
 typeguard==4.4.4
 typer==0.16.0
 types-python-dateutil==2.9.0.20250809

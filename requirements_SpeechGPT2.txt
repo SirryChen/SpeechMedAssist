@@ -229,8 +229,8 @@ trampoline==0.1.2
 transformers==4.46.1
 triton==3.1.0
 trl==0.7.2
-ttsfrd @ file:///inspire/hdd/project/socialsimulation/chensiyuan-CZXS24210113/speechmed/SpeechMedAssist/weight/CosyVoice-ttsfrd/ttsfrd-0.4.2-cp310-cp310-linux_x86_64.whl#sha256=149514a05c2a7a01076170d2923efd231fc579f8e48403ab523814c8256efe14
-ttsfrd-dependency @ file:///inspire/hdd/project/socialsimulation/chensiyuan-CZXS24210113/speechmed/SpeechMedAssist/weight/CosyVoice-ttsfrd/ttsfrd_dependency-0.1-py3-none-any.whl#sha256=060a53f0650d12839983afdcfb052b049d7cf5c62344a00fee3a7344582aaf6f
+ttsfrd
+ttsfrd-dependency
 typeguard==4.4.4
 typer==0.15.1
 typing_extensions==4.14.1

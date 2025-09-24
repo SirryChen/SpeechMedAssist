@@ -1,6 +1,6 @@
 # SpeechMedAssist: Efficiently and Effectively Adapting Speech Language Model for Medical Consultation
 
-SpeechMedAssist a SpeechLM designed for multimodal multi-turn medical consultation, which can natively analyze symptoms, conduct proactive inquiries, and provide diagnostic and treatment suggestions.
+SpeechMedAssist is a SpeechLM designed for speech-based multi-turn medical consultation, which can natively analyze symptoms, conduct proactive inquiries, and provide diagnostic and treatment suggestions.
 
 ## 0.Environment
 
@@ -277,9 +277,9 @@ run the function `train_s2t()` in [[converge.py]](./data.converge.py)
 Run the following command to train the model.
 
 ```shell
-PYTHONPATH=../ nohup torchrun --nproc_per_node=4 stage1.py > ../log/stage1.log 2>&1 &
-PYTHONPATH=../ nohup torchrun --nproc_per_node=4 stage2.py > ../log/stage2.log 2>&1 &
-PYTHONPATH=../ nohup torchrun --nproc_per_node=4 stage3.py > ../log/stage2.log 2>&1 &
+PYTHONPATH=../ nohup torchrun --nproc_per_node=THE_NUM_OF_GPU stage1.py > ../log/stage1.log 2>&1 &
+PYTHONPATH=../ nohup torchrun --nproc_per_node=THE_NUM_OF_GPU stage2.py > ../log/stage2.log 2>&1 &
+PYTHONPATH=../ nohup torchrun --nproc_per_node=THE_NUM_OF_GPU stage3.py > ../log/stage2.log 2>&1 &
 ```
 
 
