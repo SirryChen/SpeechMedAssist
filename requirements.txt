@@ -300,7 +300,6 @@ traitlets==5.14.3
 transformers==4.43.4
 triton==2.3.1
 ttsfrd
-ttsfrd-dependency
 typeguard==4.4.4
 typer==0.16.0
 types-python-dateutil==2.9.0.20250809

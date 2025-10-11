@@ -230,7 +230,6 @@ transformers==4.51.0
 triton==3.1.0
 trl==0.7.2
 ttsfrd
-ttsfrd-dependency
 typeguard==4.4.4
 typer==0.15.1
 typing_extensions==4.14.1

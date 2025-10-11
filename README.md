@@ -5,6 +5,10 @@ SpeechMedAssist is a SpeechLM designed for speech-based multi-turn medical consu
 ![Data construction, model architecture, and training strategy](./image/main.svg)
 
 
+## DEMO for comparation among different models
+You can download this repository and open [[index.html]](./demo_package/index.html) in your local browser to view the demo.
+
+
 ## 0.Environment
 
 To run our model, the following steps are required:
@@ -13,7 +17,7 @@ conda create -n SpeechMedAssist python=3.10
 pip install -r requirements.txt
 ```
 
-To run all baselines in our paper, we need to use some functions in the original projects. the following steps are required:
+To run all baselines in [[inference]](./inference), some functions in the original projects are needed. The following steps are required:
 ```shell
 git clone https://github.com/zai-org/GLM-4-Voice.git ../GLM-4-Voice
 git clone https://github.com/MoonshotAI/Kimi-Audio.git ../Kimi-Audio
@@ -27,7 +31,7 @@ pip install -r requirements_shizhengpt.txt
 ```
 
 
-## 1.Download DATA
+## 1.Download Data
 
 [[Aishell2]](https://aishelltech.com/aishell_2)
 [[Aishell3]](https://aishelltech.com/aishell_3)
