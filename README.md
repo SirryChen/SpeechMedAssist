@@ -6,7 +6,7 @@ SpeechMedAssist is a SpeechLM designed for speech-based multi-turn medical consu
 
 
 ## DEMO for comparison among different models
-You can download this repository and open [[index.html]](./demo_package/index.html) in your local browser to view the demo.
+**👉 You can download this repository and open [`index.html`](./demo_package/index.html) in your local browser to view the demo.**
 
 
 ## 0.Environment
