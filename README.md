@@ -5,7 +5,7 @@ SpeechMedAssist is a SpeechLM designed for speech-based multi-turn medical consu
 ![Data construction, model architecture, and training strategy](./image/main.svg)
 
 
-## DEMO for comparation among different models
+## DEMO for comparison among different models
 You can download this repository and open [[index.html]](./demo_package/index.html) in your local browser to view the demo.
 
 
@@ -359,3 +359,8 @@ python evaluation.py \
 ### 5.3 Wild
 
 Almost the same as the single-turn Q&A.
+
+
+## Code Usage
+- [LLaMA-Omni2](https://github.com/ictnlp/LLaMA-Omni2): Our model is built upon LLaMA-Omni2. We utilize its publicly available implementation for the core model code and have extended it with additional training modules.
+
