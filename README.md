@@ -218,12 +218,12 @@ python your_script.py \
 
 ### 3.4 Synthesize
 
-run the function `train_t2t()` and `annotate_t2t()` in [[converge.py]](./data.converge.py)
+run the function `train_t2t()` and `annotate_t2t()` in [`converge.py`]](./data.converge.py)
 
 <details open>
 <summary>synthesize the speech used in train and test</summary>
 
-You can also use the [split_data_for_parallel.py](./data/split_data_for_parallel.py) for parallel synthesizing.
+You can also use the [`split_data_for_parallel.py`](./data/split_data_for_parallel.py) for parallel synthesizing.
 ```bash
 # -------- 1. train_s2t_normal.json --------
 python synthesize.py \
@@ -280,7 +280,7 @@ python synthesize.py \
 ```
 </details>
 
-run the function `train_s2t()` in [[converge.py]](./data.converge.py)
+run the function `train_s2t()` in [`converge.py`]](./data.converge.py)
 
 
 ## 4.Train
@@ -305,7 +305,7 @@ The eval code includes the following three parts:
 
 ### 5.2 Multi-Turn Conversation
 
-#### 5.2.1 First get the record of the conversation between the tested model as a doctor and the virtual patient. [[dialog_record.py]](./eval/conversation/dialog_record.py)
+#### 5.2.1 First get the record of the conversation between the tested model as a doctor and the virtual patient. [`dialog_record.py`](./eval/conversation/dialog_record.py)
 
 <details open>
 <summary>details of arguments and example command</summary>
@@ -340,7 +340,7 @@ python dialog_record.py \
 
 </details>
 
-#### 5.2.2 Then evaluate the performance of the tested model. [[evaluation.py]](./eval/conversation/evaluation.py)
+#### 5.2.2 Then evaluate the performance of the tested model. [`evaluation.py`](./eval/conversation/evaluation.py)
 
 <details open>
 <summary>example command</summary>
