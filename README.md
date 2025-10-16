@@ -295,7 +295,7 @@ Run the following command to train the model.
 ```shell
 PYTHONPATH=../ nohup torchrun --nproc_per_node=THE_NUM_OF_GPU stage1.py > ../log/stage1.log 2>&1 &
 PYTHONPATH=../ nohup torchrun --nproc_per_node=THE_NUM_OF_GPU stage2.py > ../log/stage2.log 2>&1 &
-PYTHONPATH=../ nohup torchrun --nproc_per_node=THE_NUM_OF_GPU stage3.py > ../log/stage2.log 2>&1 &
+PYTHONPATH=../ nohup torchrun --nproc_per_node=THE_NUM_OF_GPU stage3.py > ../log/stage3.log 2>&1 &
 ```
 
 
