@@ -8,14 +8,11 @@ SpeechMedAssist is a SpeechLM designed for speech-based multi-turn medical consu
 ## DEMO for comparison among different models
 **👉 You can download this repository and open [`index.html`](./demo_package/index.html) in your local browser to view the demo.**
 
-### 示例语音
-**SpeechMedAssist2回复：**
+### One Sample Audio from SpeechMedAssist
+**SpeechMedAssist2 Text Response:**
 > 处理方式要看具体情况，可能是药物治疗或者再次清宫。关键是早发现早治疗，避免感染和其他并发症。记得保持个人卫生，避免性生活直到医生说可以。
 
-<audio controls>
-  <source src="./demo_package/audio/multi/wav_compress/wav_demo_SpeechMedAssist2/0/doctor_2.mp3" type="audio/mpeg">
-  您的浏览器不支持音频播放。<a href="./demo_package/audio/multi/wav_compress/wav_demo_SpeechMedAssist2/0/doctor_2.mp3">点击下载音频</a>
-</audio>
+🔊 [**SpeechMedAssist2 Audio Response**](./demo_package/audio/multi/wav_compress/wav_demo_SpeechMedAssist2/0/doctor_2.mp3)
 
 
 ## 0.Environment
