@@ -14,7 +14,7 @@ SpeechMedAssist is a SpeechLM designed for speech-based multi-turn medical consu
 
 - **SpeechMedAssist2 Audio Response:**
 
-https://github.com/user-attachments/assets/a55cfe76-c59e-42c7-8101-1136bfbf5bad
+https://github.com/user-attachments/assets/aa7a38e9-14d1-4fab-ae18-391514076849
 
 
 ## 0.Environment
