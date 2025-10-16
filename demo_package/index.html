@@ -248,21 +248,22 @@
     <nav class="toc-sidebar">
       <div class="toc-header">目录</div>
       <ul class="toc-list">
+        <li class="toc-level-2"><a href="#0-preface">0. Preface</a></li>
         <li class="toc-level-2"><a href="#0-前置说明">0. 前置说明</a></li>
         <li class="toc-level-2"><a href="#3-multi-conv">1. Multi Conv</a></li>
-        <li class="toc-level-3"><a href="#1-model_k">1. model_k</a></li>
-        <li class="toc-level-3"><a href="#2-model_l">2. model_l</a></li>
-        <li class="toc-level-3"><a href="#3-model_c">3. model_c</a></li>
-        <li class="toc-level-3"><a href="#4-model_i">4. model_i</a></li>
-        <li class="toc-level-3"><a href="#5-model_j">5. model_j</a></li>
-        <li class="toc-level-3"><a href="#6-model_f">6. model_f</a></li>
-        <li class="toc-level-3"><a href="#7-model_b">7. model_b</a></li>
-        <li class="toc-level-3"><a href="#8-model_a">8. model_a</a></li>
-        <li class="toc-level-3"><a href="#9-model_h">9. model_h</a></li>
-        <li class="toc-level-3"><a href="#10-model_d">10. model_d</a></li>
-        <li class="toc-level-3"><a href="#11-model_m">11. model_m</a></li>
-        <li class="toc-level-3"><a href="#12-model_g">12. model_g</a></li>
-        <li class="toc-level-3"><a href="#13-model_e">13. model_e</a></li>
+        <li class="toc-level-3"><a href="#1-model_k">1. Baichuan2</a></li>
+        <li class="toc-level-3"><a href="#2-model_l">2. DISC_MedLLM</a></li>
+        <li class="toc-level-3"><a href="#3-model_c">3. GLM4-Voice</a></li>
+        <li class="toc-level-3"><a href="#4-model_i">4. HuatuoGPT2</a></li>
+        <li class="toc-level-3"><a href="#5-model_j">5. KimiAudio</a></li>
+        <li class="toc-level-3"><a href="#6-model_f">6. Llama-Omni2-7B</a></li>
+        <li class="toc-level-3"><a href="#7-model_b">7. Qwen2-Audio</a></li>
+        <li class="toc-level-3"><a href="#8-model_a">8. ShizhenGPT</a></li>
+        <li class="toc-level-3"><a href="#9-model_h">9. SpeechGPT2</a></li>
+        <li class="toc-level-3"><a href="#13-model_e">10. Zhongjing</a></li>
+        <li class="toc-level-3"><a href="#10-model_d">11. SpeechMedAssist1</a></li>
+        <li class="toc-level-3"><a href="#11-model_m">12. SpeechMedAssist2-2k</a></li>
+        <li class="toc-level-3"><a href="#12-model_g">13. SpeechMedAssist2</a></li>
         <li class="toc-level-2"><a href="#1-wild">2. Wild</a></li>
         <li class="toc-level-3"><a href="#1-example-1">1. Example 1</a></li>
         <li class="toc-level-3"><a href="#2-example-2">2. Example 2</a></li>
@@ -292,16 +293,50 @@
 
     <div class="container">
 
+
+<h2 id="0-preface">0. Preface</h2>
+
+<p>
+Text-based interaction is currently the primary communication mode for existing medical large models, allowing younger users to conveniently engage in online consultations through typing.
+However, in real-world scenarios such as medical consultations, voice interaction is a more direct, convenient, and elderly-friendly form of communication.
+Therefore, we aim to promote the application of end-to-end speech large models in medical consultation settings.
+We decompose the doctor’s multi-turn consultation process into the following steps: symptom analysis, proactive questioning, and providing diagnostic or treatment advice.
+</p>
+
+<p>
+To evaluate the performance of existing models in medical consultation scenarios, we conducted three groups of tests:
+</p>
+
+<ul>
+  <li><strong>Wild</strong>: We collected patient speech from real-world environments containing substantial noise to test whether the model can handle realistic conditions.</li>
+  <li><strong>Single QA</strong>: We gathered a set of common questions to test whether the model possesses relevant medical knowledge through single-turn question-answering.</li>
+  <li><strong>Multi Conv</strong>: We collected real patient information to drive the model to play the role of a patient and engage in multi-turn interactions with the tested model, simulating real medical consultations to evaluate its diagnostic ability.</li>
+</ul>
+
+<p>
+<mark>Since our model is primarily trained on Chinese corpora, the following results are mainly presented in Chinese.</mark>
+</p>
+
+
 <h2 id="0-前置说明">0. 前置说明</h2>
 
-<p>文本交互是现有医疗大模型的主要交互方式，便于年轻群体直接在网络中通过打字的方式进行交流。但在实际的场景中，例如医疗咨询，语音交互是更为直接、便捷、老年人友好的交互方式。因此，我们期望推动端到端的语音大模型在医疗咨询场景下的应用。我们将医生在多轮咨询过程中的步骤拆解为：分析病症、主动追问、给出诊断或治疗意见。</p>
+<p>
+文本交互是现有医疗大模型的主要交互方式，便于年轻群体直接在网络中通过打字的方式进行交流。
+但在实际的场景中，例如医疗咨询，语音交互是更为直接、便捷、老年人友好的交互方式。
+因此，我们期望推动端到端的语音大模型在医疗咨询场景下的应用。
+我们将医生在多轮咨询过程中的步骤拆解为：分析病症、主动追问、给出诊断或治疗意见。
+</p>
 
-<p>为验证现有的模型在医疗咨询场景下的性能，我们进行了三组测试：</p>
+<p>
+为验证现有的模型在医疗咨询场景下的性能，我们进行了三组测试：
+</p>
+
 <ul>
-<li><strong>Wild</strong>：收集真实场景下的患者语音，包含大量噪声，测试模型能否应对真实环境；</li>
-<li><strong>Single QA</strong>：我们收集了一些常见的问题，通过单轮问答的方式测试模型是否具备相关的医疗知识；</li>
-<li><strong>Multi Conv</strong>：我们收集真实患者的信息，用于驱动大模型扮演患者的角色，与待测试的模型进行多轮的交互，模拟真实环境下的医疗咨询过程，用于测试模型的诊断能力。</li>
+  <li><strong>Wild</strong>：收集真实场景下的患者语音，包含大量噪声，测试模型能否应对真实环境；</li>
+  <li><strong>Single QA</strong>：我们收集了一些常见的问题，通过单轮问答的方式测试模型是否具备相关的医疗知识；</li>
+  <li><strong>Multi Conv</strong>：我们收集真实患者的信息，用于驱动大模型扮演患者的角色，与待测试的模型进行多轮的交互，模拟真实环境下的医疗咨询过程，用于测试模型的诊断能力。</li>
 </ul>
+
 
 
 
@@ -901,265 +936,9 @@
 </div>
 
 
-<h3 id="10-model_d">10. SpeechMedAssist1</h3>
-
-<div class="dialog-container">
-  <div class="dialog-card">
-    <div class="dialog-row">
-      <span class="dialog-role">Patient</span>
-      <div class="dialog-content">
-        <div class="dialog-text">医生，我生完孩子已经15天了，但最近还是有点出血，没有痛。前几天去医院做了彩超，医生说子宫里面有个东西，可能是胎盘没排干净。这严重吗？</div>
-        <audio controls class="dialog-audio">
-          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist1/0/patient_0.mp3" type="audio/mp3">
-        </audio>
-      </div>
-    </div>
-    <div class="dialog-row">
-      <span class="dialog-role">SpeechMedAssist1</span>
-      <div class="dialog-content">
-        <div class="dialog-text">嗯，胎盘早剥确实挺严重的，可能会导致胎儿缺氧。你现在还有出血的情况吗？</div>
-        <audio controls class="dialog-audio">
-          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist1/0/doctor_0.mp3" type="audio/mp3">
-        </audio>
-      </div>
-    </div>
-    <div class="dialog-row">
-      <span class="dialog-role">Patient</span>
-      <div class="dialog-content">
-        <div class="dialog-text">医生，我现在还是有点出血，但不多，也没有痛。就是有点担心这个东西会不会影响恢复。</div>
-        <audio controls class="dialog-audio">
-          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist1/0/patient_1.mp3" type="audio/mp3">
-        </audio>
-      </div>
-    </div>
-    <div class="dialog-row">
-      <span class="dialog-role">SpeechMedAssist1</span>
-      <div class="dialog-content">
-        <div class="dialog-text">胎盘早剥需要密切关注，你得继续按医生说的定期复查。如果有任何不适，比如出血增多或者肚子疼，一定要马上去医院。平时注意休息，别太累，饮食也要均衡。</div>
-        <audio controls class="dialog-audio">
-          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist1/0/doctor_1.mp3" type="audio/mp3">
-        </audio>
-      </div>
-    </div>
-    <div class="dialog-row">
-      <span class="dialog-role">Patient</span>
-      <div class="dialog-content">
-        <div class="dialog-text">医生，我明白了。我会注意休息，饮食也会注意。如果出血多了或者肚子疼，我会立刻去医院。还有，这个东西会不会影响我以后再怀孕？</div>
-        <audio controls class="dialog-audio">
-          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist1/0/patient_2.mp3" type="audio/mp3">
-        </audio>
-      </div>
-    </div>
-    <div class="dialog-row">
-      <span class="dialog-role">SpeechMedAssist1</span>
-      <div class="dialog-content">
-        <div class="dialog-text">胎盘早剥确实挺危险的，但及时处理的话，大多数情况下不会对以后怀孕有太大影响。你还是要定期复查，听从医生的建议。</div>
-        <audio controls class="dialog-audio">
-          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist1/0/doctor_2.mp3" type="audio/mp3">
-        </audio>
-      </div>
-    </div>
-    <div class="dialog-row">
-      <span class="dialog-role">Patient</span>
-      <div class="dialog-content">
-        <div class="dialog-text">医生，我听您的，会按时复查。不过我还是有点担心，这个东西会不会自己排出来？我需要做手术吗？</div>
-        <audio controls class="dialog-audio">
-          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist1/0/patient_3.mp3" type="audio/mp3">
-        </audio>
-      </div>
-    </div>
-    <div class="dialog-row">
-      <span class="dialog-role">SpeechMedAssist1</span>
-      <div class="dialog-content">
-        <div class="dialog-text">胎盘早剥是否需要手术要看具体情况，比如胎儿的情况和你的身体状况。如果情况严重，可能需要手术。你现在要做的就是定期复查，听从医生的建议。</div>
-        <audio controls class="dialog-audio">
-          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist1/0/doctor_3.mp3" type="audio/mp3">
-        </audio>
-      </div>
-    </div>
-  </div>
-</div>
 
 
-<h3 id="11-model_m">11. SpeechMedAssist2-2k</h3>
-
-<div class="dialog-container">
-  <div class="dialog-card">
-    <div class="dialog-row">
-      <span class="dialog-role">Patient</span>
-      <div class="dialog-content">
-        <div class="dialog-text">医生，我生完孩子已经15天了，但最近还是有点出血，没有痛。前几天去医院做了彩超，医生说子宫里面有个东西，可能是胎盘没排干净。这严重吗？</div>
-        <audio controls class="dialog-audio">
-          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2-2k/0/patient_0.mp3" type="audio/mp3">
-        </audio>
-      </div>
-    </div>
-    <div class="dialog-row">
-      <span class="dialog-role">SpeechMedAssist2-2k</span>
-      <div class="dialog-content">
-        <div class="dialog-text">这种情况确实需要关注。你能告诉我具体是什么时候开始出血的吗？还有，出血量大不大？</div>
-        <audio controls class="dialog-audio">
-          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2-2k/0/doctor_0.mp3" type="audio/mp3">
-        </audio>
-      </div>
-    </div>
-    <div class="dialog-row">
-      <span class="dialog-role">Patient</span>
-      <div class="dialog-content">
-        <div class="dialog-text">出血是从生完孩子后第7天开始的，量不多，就像来月经一样，但颜色比较淡。没有别的不舒服。</div>
-        <audio controls class="dialog-audio">
-          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2-2k/0/patient_1.mp3" type="audio/mp3">
-        </audio>
-      </div>
-    </div>
-    <div class="dialog-row">
-      <span class="dialog-role">SpeechMedAssist2-2k</span>
-      <div class="dialog-content">
-        <div class="dialog-text">了解了。胎盘没排干净可能会导致出血，需要及时处理。建议你尽快去医院复查，可能需要做B超看看具体情况，必要时医生会帮你清理。注意休息，避免劳累和性生活，观察出血情况，如有增多或有其他不适，立即就医。</div>
-        <audio controls class="dialog-audio">
-          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2-2k/0/doctor_1.mp3" type="audio/mp3">
-        </audio>
-      </div>
-    </div>
-    <div class="dialog-row">
-      <span class="dialog-role">Patient</span>
-      <div class="dialog-content">
-        <div class="dialog-text">医生，我明白了。我会尽快再去医院复查。如果出血量增多或者有其他不舒服，我会马上去看医生。谢谢您的建议。</div>
-        <audio controls class="dialog-audio">
-          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2-2k/0/patient_2.mp3" type="audio/mp3">
-        </audio>
-      </div>
-    </div>
-    <div class="dialog-row">
-      <span class="dialog-role">SpeechMedAssist2-2k</span>
-      <div class="dialog-content">
-        <div class="dialog-text">好的，记得按时复查，注意身体变化，有任何异常都要及时就医。祝你和宝宝健康。</div>
-        <audio controls class="dialog-audio">
-          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2-2k/0/doctor_2.mp3" type="audio/mp3">
-        </audio>
-      </div>
-    </div>
-    <div class="dialog-row">
-      <span class="dialog-role">Patient</span>
-      <div class="dialog-content">
-        <div class="dialog-text">好的，医生。我会注意休息，避免劳累和性生活，观察出血情况。如果出血量增多或有其他不适，我会马上去看医生。谢谢您的关心和建议。</div>
-        <audio controls class="dialog-audio">
-          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2-2k/0/patient_3.mp3" type="audio/mp3">
-        </audio>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<h3 id="12-model_g">12. SpeechMedAssist2</h3>
-
-<div class="dialog-container">
-  <div class="dialog-card">
-    <div class="dialog-row">
-      <span class="dialog-role">Patient</span>
-      <div class="dialog-content">
-        <div class="dialog-text">医生，我生完孩子已经15天了，但最近还是有点出血，没有痛。前几天去医院做了彩超，医生说子宫里面有个东西，可能是胎盘没排干净。这严重吗？</div>
-        <audio controls class="dialog-audio">
-          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2/0/patient_0.mp3" type="audio/mp3">
-        </audio>
-      </div>
-    </div>
-    <div class="dialog-row">
-      <span class="dialog-role">SpeechMedAssist2</span>
-      <div class="dialog-content">
-        <div class="dialog-text">这种情况确实需要关注。你能告诉我出血量大不大？有没有其他不适的症状？</div>
-        <audio controls class="dialog-audio">
-          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2/0/doctor_0.mp3" type="audio/mp3">
-        </audio>
-      </div>
-    </div>
-    <div class="dialog-row">
-      <span class="dialog-role">Patient</span>
-      <div class="dialog-content">
-        <div class="dialog-text">出血量不多，就像来月经的第一天那样，颜色有点暗。没有别的不舒服，就是有点担心。</div>
-        <audio controls class="dialog-audio">
-          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2/0/patient_1.mp3" type="audio/mp3">
-        </audio>
-      </div>
-    </div>
-    <div class="dialog-row">
-      <span class="dialog-role">SpeechMedAssist2</span>
-      <div class="dialog-content">
-        <div class="dialog-text">了解了。子宫里有残留物可能会导致出血，最好尽快去医院复查一下，看看是否需要进一步处理。如果有感染风险，医生可能会开些抗生素预防。注意休息，不要做剧烈运动。</div>
-        <audio controls class="dialog-audio">
-          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2/0/doctor_1.mp3" type="audio/mp3">
-        </audio>
-      </div>
-    </div>
-    <div class="dialog-row">
-      <span class="dialog-role">Patient</span>
-      <div class="dialog-content">
-        <div class="dialog-text">医生，我听您的，明天就去复查。如果需要处理的话，应该怎么办呢？会不会很麻烦？</div>
-        <audio controls class="dialog-audio">
-          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2/0/patient_2.mp3" type="audio/mp3">
-        </audio>
-      </div>
-    </div>
-    <div class="dialog-row">
-      <span class="dialog-role">SpeechMedAssist2</span>
-      <div class="dialog-content">
-        <div class="dialog-text">处理方式要看具体情况，可能是药物治疗或者再次清宫。关键是早发现早治疗，避免感染和其他并发症。记得保持个人卫生，避免性生活直到医生说可以。</div>
-        <audio controls class="dialog-audio">
-          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2/0/doctor_2.mp3" type="audio/mp3">
-        </audio>
-      </div>
-    </div>
-    <div class="dialog-row">
-      <span class="dialog-role">Patient</span>
-      <div class="dialog-content">
-        <div class="dialog-text">医生，我明白了。如果需要清宫的话，会不会很疼？我有点害怕。还有，复查需要空腹吗？</div>
-        <audio controls class="dialog-audio">
-          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2/0/patient_3.mp3" type="audio/mp3">
-        </audio>
-      </div>
-    </div>
-    <div class="dialog-row">
-      <span class="dialog-role">SpeechMedAssist2</span>
-      <div class="dialog-content">
-        <div class="dialog-text">清宫时会用麻醉，所以不会太疼。复查一般需要空腹，这样检查更准确。如果有任何疑问，直接跟医生沟通就好。希望你早日康复。</div>
-        <audio controls class="dialog-audio">
-          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2/0/doctor_3.mp3" type="audio/mp3">
-        </audio>
-      </div>
-    </div>
-    <div class="dialog-row">
-      <span class="dialog-role">Patient</span>
-      <div class="dialog-content">
-        <div class="dialog-text">医生，我明白了。清宫的时候会麻醉，那我就放心了。复查我会空腹去的。如果复查结果出来，需要马上治疗的话，能不能当天就安排？因为我家离医院有点远。</div>
-        <audio controls class="dialog-audio">
-          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2/0/patient_4.mp3" type="audio/mp3">
-        </audio>
-      </div>
-    </div>
-    <div class="dialog-row">
-      <span class="dialog-role">SpeechMedAssist2</span>
-      <div class="dialog-content">
-        <div class="dialog-text">可以的，如果需要紧急处理，医院会安排当天手术。不过最好先跟医生确认一下，看是否真的需要那么快处理。记得带上之前的检查报告。</div>
-        <audio controls class="dialog-audio">
-          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2/0/doctor_4.mp3" type="audio/mp3">
-        </audio>
-      </div>
-    </div>
-    <div class="dialog-row">
-      <span class="dialog-role">Patient</span>
-      <div class="dialog-content">
-        <div class="dialog-text">医生，我明白了。我会带好之前的检查报告，明天就去复查。如果需要当天处理，我也会做好准备。谢谢您！</div>
-        <audio controls class="dialog-audio">
-          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2/0/patient_5.mp3" type="audio/mp3">
-        </audio>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<h3 id="13-model_e">13. Zhongjing</h3>
+<h3 id="13-model_e">10. Zhongjing</h3>
 
 <div class="dialog-container">
   <div class="dialog-card">
@@ -1273,6 +1052,266 @@
     </div>
   </div>
 </div>
+
+<h3 id="10-model_d">11. SpeechMedAssist1</h3>
+
+<div class="dialog-container">
+  <div class="dialog-card">
+    <div class="dialog-row">
+      <span class="dialog-role">Patient</span>
+      <div class="dialog-content">
+        <div class="dialog-text">医生，我生完孩子已经15天了，但最近还是有点出血，没有痛。前几天去医院做了彩超，医生说子宫里面有个东西，可能是胎盘没排干净。这严重吗？</div>
+        <audio controls class="dialog-audio">
+          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist1/0/patient_0.mp3" type="audio/mp3">
+        </audio>
+      </div>
+    </div>
+    <div class="dialog-row">
+      <span class="dialog-role">SpeechMedAssist1</span>
+      <div class="dialog-content">
+        <div class="dialog-text">嗯，胎盘早剥确实挺严重的，可能会导致胎儿缺氧。你现在还有出血的情况吗？</div>
+        <audio controls class="dialog-audio">
+          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist1/0/doctor_0.mp3" type="audio/mp3">
+        </audio>
+      </div>
+    </div>
+    <div class="dialog-row">
+      <span class="dialog-role">Patient</span>
+      <div class="dialog-content">
+        <div class="dialog-text">医生，我现在还是有点出血，但不多，也没有痛。就是有点担心这个东西会不会影响恢复。</div>
+        <audio controls class="dialog-audio">
+          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist1/0/patient_1.mp3" type="audio/mp3">
+        </audio>
+      </div>
+    </div>
+    <div class="dialog-row">
+      <span class="dialog-role">SpeechMedAssist1</span>
+      <div class="dialog-content">
+        <div class="dialog-text">胎盘早剥需要密切关注，你得继续按医生说的定期复查。如果有任何不适，比如出血增多或者肚子疼，一定要马上去医院。平时注意休息，别太累，饮食也要均衡。</div>
+        <audio controls class="dialog-audio">
+          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist1/0/doctor_1.mp3" type="audio/mp3">
+        </audio>
+      </div>
+    </div>
+    <div class="dialog-row">
+      <span class="dialog-role">Patient</span>
+      <div class="dialog-content">
+        <div class="dialog-text">医生，我明白了。我会注意休息，饮食也会注意。如果出血多了或者肚子疼，我会立刻去医院。还有，这个东西会不会影响我以后再怀孕？</div>
+        <audio controls class="dialog-audio">
+          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist1/0/patient_2.mp3" type="audio/mp3">
+        </audio>
+      </div>
+    </div>
+    <div class="dialog-row">
+      <span class="dialog-role">SpeechMedAssist1</span>
+      <div class="dialog-content">
+        <div class="dialog-text">胎盘早剥确实挺危险的，但及时处理的话，大多数情况下不会对以后怀孕有太大影响。你还是要定期复查，听从医生的建议。</div>
+        <audio controls class="dialog-audio">
+          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist1/0/doctor_2.mp3" type="audio/mp3">
+        </audio>
+      </div>
+    </div>
+    <div class="dialog-row">
+      <span class="dialog-role">Patient</span>
+      <div class="dialog-content">
+        <div class="dialog-text">医生，我听您的，会按时复查。不过我还是有点担心，这个东西会不会自己排出来？我需要做手术吗？</div>
+        <audio controls class="dialog-audio">
+          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist1/0/patient_3.mp3" type="audio/mp3">
+        </audio>
+      </div>
+    </div>
+    <div class="dialog-row">
+      <span class="dialog-role">SpeechMedAssist1</span>
+      <div class="dialog-content">
+        <div class="dialog-text">胎盘早剥是否需要手术要看具体情况，比如胎儿的情况和你的身体状况。如果情况严重，可能需要手术。你现在要做的就是定期复查，听从医生的建议。</div>
+        <audio controls class="dialog-audio">
+          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist1/0/doctor_3.mp3" type="audio/mp3">
+        </audio>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<h3 id="11-model_m">12. SpeechMedAssist2-2k</h3>
+
+<div class="dialog-container">
+  <div class="dialog-card">
+    <div class="dialog-row">
+      <span class="dialog-role">Patient</span>
+      <div class="dialog-content">
+        <div class="dialog-text">医生，我生完孩子已经15天了，但最近还是有点出血，没有痛。前几天去医院做了彩超，医生说子宫里面有个东西，可能是胎盘没排干净。这严重吗？</div>
+        <audio controls class="dialog-audio">
+          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2-2k/0/patient_0.mp3" type="audio/mp3">
+        </audio>
+      </div>
+    </div>
+    <div class="dialog-row">
+      <span class="dialog-role">SpeechMedAssist2-2k</span>
+      <div class="dialog-content">
+        <div class="dialog-text">这种情况确实需要关注。你能告诉我具体是什么时候开始出血的吗？还有，出血量大不大？</div>
+        <audio controls class="dialog-audio">
+          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2-2k/0/doctor_0.mp3" type="audio/mp3">
+        </audio>
+      </div>
+    </div>
+    <div class="dialog-row">
+      <span class="dialog-role">Patient</span>
+      <div class="dialog-content">
+        <div class="dialog-text">出血是从生完孩子后第7天开始的，量不多，就像来月经一样，但颜色比较淡。没有别的不舒服。</div>
+        <audio controls class="dialog-audio">
+          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2-2k/0/patient_1.mp3" type="audio/mp3">
+        </audio>
+      </div>
+    </div>
+    <div class="dialog-row">
+      <span class="dialog-role">SpeechMedAssist2-2k</span>
+      <div class="dialog-content">
+        <div class="dialog-text">了解了。胎盘没排干净可能会导致出血，需要及时处理。建议你尽快去医院复查，可能需要做B超看看具体情况，必要时医生会帮你清理。注意休息，避免劳累和性生活，观察出血情况，如有增多或有其他不适，立即就医。</div>
+        <audio controls class="dialog-audio">
+          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2-2k/0/doctor_1.mp3" type="audio/mp3">
+        </audio>
+      </div>
+    </div>
+    <div class="dialog-row">
+      <span class="dialog-role">Patient</span>
+      <div class="dialog-content">
+        <div class="dialog-text">医生，我明白了。我会尽快再去医院复查。如果出血量增多或者有其他不舒服，我会马上去看医生。谢谢您的建议。</div>
+        <audio controls class="dialog-audio">
+          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2-2k/0/patient_2.mp3" type="audio/mp3">
+        </audio>
+      </div>
+    </div>
+    <div class="dialog-row">
+      <span class="dialog-role">SpeechMedAssist2-2k</span>
+      <div class="dialog-content">
+        <div class="dialog-text">好的，记得按时复查，注意身体变化，有任何异常都要及时就医。祝你和宝宝健康。</div>
+        <audio controls class="dialog-audio">
+          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2-2k/0/doctor_2.mp3" type="audio/mp3">
+        </audio>
+      </div>
+    </div>
+    <div class="dialog-row">
+      <span class="dialog-role">Patient</span>
+      <div class="dialog-content">
+        <div class="dialog-text">好的，医生。我会注意休息，避免劳累和性生活，观察出血情况。如果出血量增多或有其他不适，我会马上去看医生。谢谢您的关心和建议。</div>
+        <audio controls class="dialog-audio">
+          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2-2k/0/patient_3.mp3" type="audio/mp3">
+        </audio>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<h3 id="12-model_g">13. SpeechMedAssist2</h3>
+
+<div class="dialog-container">
+  <div class="dialog-card">
+    <div class="dialog-row">
+      <span class="dialog-role">Patient</span>
+      <div class="dialog-content">
+        <div class="dialog-text">医生，我生完孩子已经15天了，但最近还是有点出血，没有痛。前几天去医院做了彩超，医生说子宫里面有个东西，可能是胎盘没排干净。这严重吗？</div>
+        <audio controls class="dialog-audio">
+          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2/0/patient_0.mp3" type="audio/mp3">
+        </audio>
+      </div>
+    </div>
+    <div class="dialog-row">
+      <span class="dialog-role">SpeechMedAssist2</span>
+      <div class="dialog-content">
+        <div class="dialog-text">这种情况确实需要关注。你能告诉我出血量大不大？有没有其他不适的症状？</div>
+        <audio controls class="dialog-audio">
+          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2/0/doctor_0.mp3" type="audio/mp3">
+        </audio>
+      </div>
+    </div>
+    <div class="dialog-row">
+      <span class="dialog-role">Patient</span>
+      <div class="dialog-content">
+        <div class="dialog-text">出血量不多，就像来月经的第一天那样，颜色有点暗。没有别的不舒服，就是有点担心。</div>
+        <audio controls class="dialog-audio">
+          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2/0/patient_1.mp3" type="audio/mp3">
+        </audio>
+      </div>
+    </div>
+    <div class="dialog-row">
+      <span class="dialog-role">SpeechMedAssist2</span>
+      <div class="dialog-content">
+        <div class="dialog-text">了解了。子宫里有残留物可能会导致出血，最好尽快去医院复查一下，看看是否需要进一步处理。如果有感染风险，医生可能会开些抗生素预防。注意休息，不要做剧烈运动。</div>
+        <audio controls class="dialog-audio">
+          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2/0/doctor_1.mp3" type="audio/mp3">
+        </audio>
+      </div>
+    </div>
+    <div class="dialog-row">
+      <span class="dialog-role">Patient</span>
+      <div class="dialog-content">
+        <div class="dialog-text">医生，我听您的，明天就去复查。如果需要处理的话，应该怎么办呢？会不会很麻烦？</div>
+        <audio controls class="dialog-audio">
+          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2/0/patient_2.mp3" type="audio/mp3">
+        </audio>
+      </div>
+    </div>
+    <div class="dialog-row">
+      <span class="dialog-role">SpeechMedAssist2</span>
+      <div class="dialog-content">
+        <div class="dialog-text">处理方式要看具体情况，可能是药物治疗或者再次清宫。关键是早发现早治疗，避免感染和其他并发症。记得保持个人卫生，避免性生活直到医生说可以。</div>
+        <audio controls class="dialog-audio">
+          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2/0/doctor_2.mp3" type="audio/mp3">
+        </audio>
+      </div>
+    </div>
+    <div class="dialog-row">
+      <span class="dialog-role">Patient</span>
+      <div class="dialog-content">
+        <div class="dialog-text">医生，我明白了。如果需要清宫的话，会不会很疼？我有点害怕。还有，复查需要空腹吗？</div>
+        <audio controls class="dialog-audio">
+          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2/0/patient_3.mp3" type="audio/mp3">
+        </audio>
+      </div>
+    </div>
+    <div class="dialog-row">
+      <span class="dialog-role">SpeechMedAssist2</span>
+      <div class="dialog-content">
+        <div class="dialog-text">清宫时会用麻醉，所以不会太疼。复查一般需要空腹，这样检查更准确。如果有任何疑问，直接跟医生沟通就好。希望你早日康复。</div>
+        <audio controls class="dialog-audio">
+          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2/0/doctor_3.mp3" type="audio/mp3">
+        </audio>
+      </div>
+    </div>
+    <div class="dialog-row">
+      <span class="dialog-role">Patient</span>
+      <div class="dialog-content">
+        <div class="dialog-text">医生，我明白了。清宫的时候会麻醉，那我就放心了。复查我会空腹去的。如果复查结果出来，需要马上治疗的话，能不能当天就安排？因为我家离医院有点远。</div>
+        <audio controls class="dialog-audio">
+          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2/0/patient_4.mp3" type="audio/mp3">
+        </audio>
+      </div>
+    </div>
+    <div class="dialog-row">
+      <span class="dialog-role">SpeechMedAssist2</span>
+      <div class="dialog-content">
+        <div class="dialog-text">可以的，如果需要紧急处理，医院会安排当天手术。不过最好先跟医生确认一下，看是否真的需要那么快处理。记得带上之前的检查报告。</div>
+        <audio controls class="dialog-audio">
+          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2/0/doctor_4.mp3" type="audio/mp3">
+        </audio>
+      </div>
+    </div>
+    <div class="dialog-row">
+      <span class="dialog-role">Patient</span>
+      <div class="dialog-content">
+        <div class="dialog-text">医生，我明白了。我会带好之前的检查报告，明天就去复查。如果需要当天处理，我也会做好准备。谢谢您！</div>
+        <audio controls class="dialog-audio">
+          <source src="./audio/multi/wav_compress\wav_demo_SpeechMedAssist2/0/patient_5.mp3" type="audio/mp3">
+        </audio>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
 
 
