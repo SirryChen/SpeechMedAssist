@@ -14,8 +14,9 @@ SpeechMedAssist is a SpeechLM designed for speech-based multi-turn medical consu
 
 <audio controls>
   <source src="./demo_package/audio/multi/wav_compress/wav_demo_SpeechMedAssist2/0/doctor_2.mp3" type="audio/mpeg">
-  您的浏览器不支持音频播放。
+  您的浏览器不支持音频播放。<a href="./demo_package/audio/multi/wav_compress/wav_demo_SpeechMedAssist2/0/doctor_2.mp3">点击下载音频</a>
 </audio>
+
 
 ## 0.Environment
 
