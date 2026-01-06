@@ -311,8 +311,6 @@ if __name__ == "__main__":
     ]):
         print(item["text"])
 
-    for item in model.stream_reply([{'from': 'user', 'value': '我最近做了一个艾滋病检测，结果显示三个月前的检测结果是阴性，这是什么意思？', 'speech': '/inspire/hdd/project/socialsimulation/chensiyuan-CZXS24210113/speechmed/SpeechMedAssist/dataset/SpeechMedDataset/wav/CMtMedQA-49790-0.wav'}]):
-        print(item["text"])
 
 
 
