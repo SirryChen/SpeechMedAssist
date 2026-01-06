@@ -128,37 +128,75 @@ class GLM4_Voice:
     def reply(self, messages, round_idx=0, temperature=1.0, top_p=1.0):
         """
         本地推理，输入为messages，输出为dict（含text和可选speech）。
-        :param messages: [{from, value, speech?}]
+        :param messages: [{from, value, speech?, added_value?}]
         :return: {"text": ..., "speech": ...}
         """
         # 构造输入历史
         history = []
         for msg in messages:
             role = msg.get("from")
-            value = msg.get("value")
+            value = msg.get("value", "")
+            added_value = msg.get("added_value", "")
             speech_path = msg.get("speech")
-            if self.input_speech and speech_path and role == "human":
-                user_input = self.extract_audio_tokens(speech_path)
-                history.append({"role": "user", "content": {"path": speech_path}})
-            elif role == "human":
-                user_input = value
-                history.append({"role": "user", "content": value})
+            if role == "human":
+                # 优先使用 added_value，如果没有则使用 value
+                text_to_use = added_value if added_value and added_value.strip() else value
+                has_text = text_to_use and text_to_use.strip()
+                has_speech = self.input_speech and speech_path
+                if has_text and has_speech:
+                    # 同时有文本和语音，保存为字典格式
+                    history.append({"role": "user", "content": {"text": text_to_use, "path": speech_path}})
+                elif has_speech:
+                    # 只有语音
+                    history.append({"role": "user", "content": {"path": speech_path}})
+                else:
+                    # 只有文本
+                    history.append({"role": "user", "content": text_to_use})
             elif role == "assistant":
                 history.append({"role": "assistant", "content": value})
-        # 当前输入
-        if self.input_speech and messages[-1].get("speech"):
-            user_input = self.extract_audio_tokens(messages[-1]["speech"])
+        # 当前输入 - 支持同时输入文本和语音
+        last_msg = messages[-1]
+        value = last_msg.get("value", "")
+        added_value = last_msg.get("added_value", "")
+        speech_path = last_msg.get("speech")
+        
+        # 优先使用 added_value，如果没有则使用 value
+        # 如果有 added_value 且有 speech，使用 added_value + speech
+        # 如果没有 added_value 但有 speech，只使用 speech（忽略 value）
+        text_to_use = added_value if added_value and added_value.strip() else value
+        has_text = text_to_use and text_to_use.strip()
+        has_speech = self.input_speech and speech_path
+        
+        if has_text and has_speech:
+            # 同时有文本和语音：先文本后语音
+            audio_tokens = self.extract_audio_tokens(speech_path)
+            user_input = f"{text_to_use}\n{audio_tokens}"
+            system_prompt = "User will provide you with both text and speech instruction. Do it step by step. First, think about the instruction and respond in a interleaved manner, with 13 text token followed by 26 audio tokens. "
+        elif has_speech:
+            # 只有语音（如果没有 added_value，即使有 value 也只用 speech）
+            user_input = self.extract_audio_tokens(speech_path)
             system_prompt = "User will provide you with a speech instruction. Do it step by step. First, think about the instruction and respond in a interleaved manner, with 13 text token followed by 26 audio tokens. "
         else:
-            user_input = messages[-1]["value"]
+            # 只有文本
+            user_input = text_to_use
             system_prompt = "User will provide you with a text instruction. Do it step by step. First, think about the instruction and respond in a interleaved manner, with 13 text token followed by 26 audio tokens."
         # 拼接历史token串
         inputs = ""
         for h in history[:-1]:
             if h["role"] == "user":
-                if isinstance(h["content"], dict) and "path" in h["content"]:
-                    inputs += f"<|user|>\n<|audio|>{h['content']['path']}<|assistant|>streaming_transcription\n"
+                if isinstance(h["content"], dict):
+                    if "path" in h["content"] and "text" in h["content"]:
+                        # 同时有文本和语音
+                        audio_tokens = self.extract_audio_tokens(h["content"]["path"])
+                        user_content = f"{h['content']['text']}\n{audio_tokens}"
+                        inputs += f"<|user|>\n{user_content}<|assistant|>streaming_transcription\n"
+                    elif "path" in h["content"]:
+                        # 只有语音
+                        inputs += f"<|user|>\n<|audio|>{h['content']['path']}<|assistant|>streaming_transcription\n"
+                    else:
+                        inputs += f"<|user|>\n{h['content']}<|assistant|>streaming_transcription\n"
                 else:
+                    # 只有文本
                     inputs += f"<|user|>\n{h['content']}<|assistant|>streaming_transcription\n"
             elif h["role"] == "assistant":
                 if isinstance(h["content"], dict) and "path" in h["content"]:
@@ -211,31 +249,68 @@ class GLM4_Voice:
         history = []
         for msg in messages:
             role = msg.get("from")
-            value = msg.get("value")
+            value = msg.get("value", "")
+            added_value = msg.get("added_value", "")
             speech_path = msg.get("speech")
-            if self.input_speech and speech_path and role == "human":
-                user_input = self.extract_audio_tokens(speech_path)
-                history.append({"role": "user", "content": {"path": speech_path}})
-            elif role == "human":
-                user_input = value
-                history.append({"role": "user", "content": value})
+            if role == "human":
+                # 优先使用 added_value，如果没有则使用 value
+                text_to_use = added_value if added_value and added_value.strip() else value
+                has_text = text_to_use and text_to_use.strip()
+                has_speech = self.input_speech and speech_path
+                if has_text and has_speech:
+                    # 同时有文本和语音，保存为字典格式
+                    history.append({"role": "user", "content": {"text": text_to_use, "path": speech_path}})
+                elif has_speech:
+                    # 只有语音
+                    history.append({"role": "user", "content": {"path": speech_path}})
+                else:
+                    # 只有文本
+                    history.append({"role": "user", "content": text_to_use})
             elif role == "assistant":
                 history.append({"role": "assistant", "content": value})
-        # 当前输入
-        if self.input_speech and messages[-1].get("speech"):
-            user_input = self.extract_audio_tokens(messages[-1]["speech"])
+        # 当前输入 - 支持同时输入文本和语音
+        last_msg = messages[-1]
+        value = last_msg.get("value", "")
+        added_value = last_msg.get("added_value", "")
+        speech_path = last_msg.get("speech")
+        
+        # 优先使用 added_value，如果没有则使用 value
+        # 如果有 added_value 且有 speech，使用 added_value + speech
+        # 如果没有 added_value 但有 speech，只使用 speech（忽略 value）
+        text_to_use = added_value if added_value and added_value.strip() else value
+        has_text = text_to_use and text_to_use.strip()
+        has_speech = self.input_speech and speech_path
+        
+        if has_text and has_speech:
+            # 同时有文本和语音：先文本后语音
+            audio_tokens = self.extract_audio_tokens(speech_path)
+            user_input = f"{text_to_use}\n{audio_tokens}"
+            system_prompt = "User will provide you with both text and speech instruction. Do it step by step. First, think about the instruction and respond in a interleaved manner, with 13 text token followed by 26 audio tokens. "
+        elif has_speech:
+            # 只有语音（如果没有 added_value，即使有 value 也只用 speech）
+            user_input = self.extract_audio_tokens(speech_path)
             system_prompt = "User will provide you with a speech instruction. Do it step by step. First, think about the instruction and respond in a interleaved manner, with 13 text token followed by 26 audio tokens. "
         else:
-            user_input = messages[-1]["value"]
+            # 只有文本
+            user_input = text_to_use
             system_prompt = "User will provide you with a text instruction. Do it step by step. First, think about the instruction and respond in a interleaved manner, with 13 text token followed by 26 audio tokens."
         # 拼接历史token串
-
         inputs = ""
         for h in history[:-1]:
             if h["role"] == "user":
-                if isinstance(h["content"], dict) and "path" in h["content"]:
-                    inputs += f"<|user|>\n<|audio|>{h['content']['path']}<|assistant|>streaming_transcription\n"
+                if isinstance(h["content"], dict):
+                    if "path" in h["content"] and "text" in h["content"]:
+                        # 同时有文本和语音
+                        audio_tokens = self.extract_audio_tokens(h["content"]["path"])
+                        user_content = f"{h['content']['text']}\n{audio_tokens}"
+                        inputs += f"<|user|>\n{user_content}<|assistant|>streaming_transcription\n"
+                    elif "path" in h["content"]:
+                        # 只有语音
+                        inputs += f"<|user|>\n<|audio|>{h['content']['path']}<|assistant|>streaming_transcription\n"
+                    else:
+                        inputs += f"<|user|>\n{h['content']}<|assistant|>streaming_transcription\n"
                 else:
+                    # 只有文本
                     inputs += f"<|user|>\n{h['content']}<|assistant|>streaming_transcription\n"
             elif h["role"] == "assistant":
                 if isinstance(h["content"], dict) and "path" in h["content"]:
@@ -356,10 +431,29 @@ if __name__ == "__main__":
 
     model = GLM4_Voice(model_path="../weight/GLM4-Voice", input_speech=True, output_speech=True)
 
+    # 示例1: 只使用语音输入
     print(model.reply([
         {
             "from": "user",
             "value": "",
+            "speech": "./20250920_115710.wav"
+        }
+    ]))
+    
+    # 示例2: 只使用文本输入
+    print(model.reply([
+        {
+            "from": "user",
+            "value": "请帮我分析一下这个音频",
+            "speech": None
+        }
+    ]))
+    
+    # 示例3: 同时使用文本和语音输入（新功能）
+    print(model.reply([
+        {
+            "from": "user",
+            "value": "请帮我分析一下这个音频",
             "speech": "./20250920_115710.wav"
         }
     ]))

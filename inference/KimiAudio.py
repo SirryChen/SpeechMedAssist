@@ -17,6 +17,8 @@ def sharegpt2KimiAudio(messages):
         role = "user" if item["from"] in ["human", "user"] else "assistant"
         if role == "user":
             new_messages.append({"role": role, "message_type": "audio", "content": item["speech"]})
+            if item.get("added_value") is not None:
+                new_messages.append({"role": role, "message_type": "text", "content": item["added_value"].replace("[cough]{cough}", "")})
         else:
             new_messages.append({"role": "assistant", "message_type": "text", "content": item["value"]})
 
@@ -74,5 +76,13 @@ if __name__ == "__main__":
                 "from": "user",
                 "value": "",
                 "speech": "./test2.mp3"
+            }
+    ]))
+
+    print(model.reply([
+            {
+                "from": "user",
+                "value": "",
+                "speech": "../dataset/SpeechMedDataset/wav/mixMDC-41190-0.wav"
             }
     ]))

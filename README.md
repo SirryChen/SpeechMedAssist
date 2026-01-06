@@ -254,7 +254,7 @@ python synthesize.py \
   --selected_data_path ../dataset/SpeechMedDataset/selected_s2t.json \
   --output_path ../dataset/SpeechMedDataset/test_s2t_Med_Safety.json \
   --wav_save_path ../dataset/SpeechMedDataset/test_wav/ \
-  --spk_info_path ../dataset/ref_audio/spk_info.json \
+  --spk_info_path ../dataset/ref_audio/Aishell-2018A-EVAL/spk_info.json \
   --selected_ratio 1 \
   --save_interval 2000
 
@@ -280,7 +280,7 @@ python synthesize.py \
   --selected_data_path ../dataset/SpeechMedDataset/selected_s2t.json \
   --output_path ../dataset/SpeechMedDataset/test_s2t_Medical_Encyclopedia.json \
   --wav_save_path ../dataset/SpeechMedDataset/test_wav/ \
-  --spk_info_path ../dataset/ref_audio/spk_info.json \
+  --spk_info_path ../dataset/ref_audio/Aishell-2018A-EVAL/spk_info.json \
   --selected_ratio 1 \
   --save_interval 2000
 

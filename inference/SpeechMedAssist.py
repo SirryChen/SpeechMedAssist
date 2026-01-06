@@ -16,6 +16,9 @@ from inference.utils import SpeechDecoder
 from torch.nn.utils.rnn import pad_sequence
 import whisper
 import torchaudio
+import tempfile
+from typing import Dict, Any
+import numpy as np
 
 
 def sharegpt_old2new(messages):
@@ -94,7 +97,7 @@ class SpeechMedAssist:
             speech_list = []
             for i, turn in enumerate(messages):
                 if i % 2 == 0:
-                    turn["value"] = DEFAULT_SPEECH_TOKEN
+                    turn["value"] = DEFAULT_SPEECH_TOKEN if turn.get("added_value") is None else turn["added_value"].format(cough=DEFAULT_SPEECH_TOKEN)
                     speech_list.append(self.load_speech(turn["speech"]))
             speech_tensors = pad_sequence(
                 speech_list,
@@ -237,8 +240,60 @@ class SpeechMedAssist:
 
 
 
+    def generate_from_array(self, audio_array: np.ndarray, sample_rate: int) -> str:
+        """
+        直接从内存中的语音数组进行推理，适配 VoiceBench 的音频输入格式。
+        Args:
+            audio_array: 1D numpy array (float32/float64), 单通道语音
+            sample_rate: 采样率
+        Returns:
+            文本回复
+        """
+        with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmpf:
+            tmp_path = tmpf.name
+        try:
+            if not isinstance(audio_array, np.ndarray):
+                audio_array = np.array(audio_array)
+            if audio_array.ndim == 1:
+                tensor = torch.from_numpy(audio_array).float().unsqueeze(0)
+            elif audio_array.ndim == 2:
+                # 取第一通道或做均值
+                if audio_array.shape[0] == 1:
+                    tensor = torch.from_numpy(audio_array).float()
+                else:
+                    tensor = torch.from_numpy(audio_array.mean(axis=0)).float().unsqueeze(0)
+            else:
+                raise ValueError("audio_array must be 1D or 2D numpy array")
+            torchaudio.save(tmp_path, tensor, sample_rate)
+            messages = [{"from": "user", "value": "", "speech": tmp_path}]
+            result = self.reply(messages, round_idx=0)
+            return result.get("text", "")
+        finally:
+            try:
+                if os.path.exists(tmp_path):
+                    os.remove(tmp_path)
+            except Exception:
+                pass
+
+
+    def generate_from_voicebench_item(self, audio_item: Dict[str, Any]) -> str:
+        """
+        适配 VoiceBench 数据集中 datasets.Audio 列的样本：
+        通常包含 keys: ['array', 'sampling_rate', ...]
+        """
+        array = audio_item.get("array")
+        sr = audio_item.get("sampling_rate")
+        if array is None or sr is None:
+            # 兼容可能的变体字段
+            array = audio_item.get("audio", {}).get("array", array)
+            sr = audio_item.get("audio", {}).get("sampling_rate", sr)
+        if array is None or sr is None:
+            raise ValueError("VoiceBench audio item missing 'array' or 'sampling_rate'")
+        return self.generate_from_array(array, int(sr))
+
+
 if __name__ == "__main__":
-    model = SpeechMedAssist(model_path="../weight/stage3", input_speech=True, output_speech=True)
+    model = SpeechMedAssist(model_path="../weight/stage2-cough2", input_speech=True, output_speech=False)
     print(model.reply([
         {
             "from": "user",
@@ -247,12 +302,17 @@ if __name__ == "__main__":
         }
     ]))
 
-    # for item in model.stream_reply([
-    #     {
-    #         "from": "user",
-    #         "value": "",
-    #         "speech": "./test2.mp3"
-    #     }
-    # ]):
-    #     print(item["text"])
+    for item in model.stream_reply([
+        {
+            "from": "user",
+            "value": "我最近左侧肋骨下一直有隐痛，是怎么回事呢？",
+            "speech": "./test2.mp3"
+        }
+    ]):
+        print(item["text"])
+
+    for item in model.stream_reply([{'from': 'user', 'value': '我最近做了一个艾滋病检测，结果显示三个月前的检测结果是阴性，这是什么意思？', 'speech': '/inspire/hdd/project/socialsimulation/chensiyuan-CZXS24210113/speechmed/SpeechMedAssist/dataset/SpeechMedDataset/wav/CMtMedQA-49790-0.wav'}]):
+        print(item["text"])
+
+
 

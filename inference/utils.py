@@ -362,7 +362,9 @@ from funasr import AutoModel
 from funasr.utils.postprocess_utils import rich_transcription_postprocess
 
 class ASRModel:
-    def __init__(self, model_path="../../weight"):
+    def __init__(self, model_path=None):
+        if model_path is None:
+            model_path = os.path.abspath(os.path.join(current_dir, "../weight"))
         self.asr_model = AutoModel(
             model=os.path.join(model_path, "SenseVoiceSmall"),
             vad_model=os.path.join(model_path, "speech_fsmn_vad_zh-cn-16k-common-pytorch"),
@@ -394,13 +396,17 @@ import torchaudio
 
 class TTSModel:
     def __init__(self, cosyvoice_path=os.path.join(current_dir, "../weight/CosyVoice2-0.5B")):
-        with add_sys_paths([
-            os.path.join(current_dir, "../CosyVoice"),
-            os.path.join(current_dir, "../CosyVoice/third_party/Matcha-TTS")
-        ]):
-            from cosyvoice.cli.cosyvoice import CosyVoice2
-            from cosyvoice.utils.file_utils import load_wav
-
+        # 永久添加路径，因为 CosyVoice 内部模块初始化时也需要导入 matcha
+        cosy_path = os.path.join(current_dir, "../CosyVoice")
+        matcha_path = os.path.join(current_dir, "../CosyVoice/third_party/Matcha-TTS")
+        
+        if cosy_path not in sys.path:
+            sys.path.insert(0, cosy_path)
+        if matcha_path not in sys.path:
+            sys.path.insert(0, matcha_path)
+        
+        from cosyvoice.cli.cosyvoice import CosyVoice2
+        from cosyvoice.utils.file_utils import load_wav
 
         self.cosyvoice = CosyVoice2(cosyvoice_path, load_jit=False, load_trt=False)
         self.prompt_text = "智能手机最重要的功能是通信和互联网"
@@ -426,3 +432,7 @@ def sharegpt_old2new(messages):
         new_messages.append({"role": message["from"], "content": message["value"]})
     return new_messages
 
+
+if __name__ == "__main__":
+    asr = ASRModel()
+    print(asr.speech2text("./prompt_zh.wav"))

@@ -89,7 +89,7 @@ class SpeechGPT2:
             reply, wav = self.inference.forward(
                 task="thought",
                 input=speech,
-                text=None,
+                text=None if messages[-1].get("added_value") is None else messages[-1]["added_value"].replace("[cough]{cough}", ""),
                 mode=self.mod,
             )
         else:

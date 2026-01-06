@@ -56,7 +56,7 @@ class ShizhenGPT:
 
             if role in ["human", "user"]:
                 if speech_path is not None and self.input_speech:
-                    history.append({"role": "user", "content": "<|audio_bos|><|AUDIO|><|audio_eos|>"})
+                    history.append({"role": "user", "content": "<|audio_bos|><|AUDIO|><|audio_eos|>" if msg.get("added_value") is None else msg["added_value"].format(cough="<|audio_bos|><|AUDIO|><|audio_eos|>")})
                 else:
                     history.append({"role": "user", "content": value})
             elif role == "assistant":
@@ -133,25 +133,25 @@ class ShizhenGPT:
 if __name__ == "__main__":
     model = ShizhenGPT(model_path="../weight/ShizhenGPT-7B-Omni")
 
-    # print(model.reply([
-    #     {
-    #         "from": "user",
-    #         "value": "",
-    #         "speech": "./20250920_115710.wav"
-    #     }
-    # ]))
+    print(model.reply([
+        {
+            "from": "user",
+            "value": "",
+            "speech": "./20250920_115710.wav"
+        }
+    ]))
 
     # 文本测试
     # print(model.reply([{"from": "user", "value": "你好，请介绍一下中医的望闻问切。"}]))
 
     # 单轮语音测试
-    print(model.reply([
-        {
-            "from": "user",
-            "value": "",
-            "speech": "./test2.mp3"
-        }
-    ]))
+    # print(model.reply([
+    #     {
+    #         "from": "user",
+    #         "value": "",
+    #         "speech": "./test2.mp3"
+    #     }
+    # ]))
 
     # 多轮语音测试
     # messages = [

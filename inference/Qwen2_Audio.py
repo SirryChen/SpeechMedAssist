@@ -22,6 +22,8 @@ def sharegpt2Qwen2Audio(messages):
                 "type": "audio",
                 "audio_url": item["speech"]
             })
+            if item.get("added_value") is not None:
+                content.append({"type": "text", "text": item["added_value"].replace("[cough]{cough}", "")})
 
         # 文本
         if "value" in item and item["value"]:
