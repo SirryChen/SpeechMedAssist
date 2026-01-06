@@ -10,7 +10,7 @@ SpeechMedAssist is a SpeechLM designed for speech-based multi-turn medical consu
 
 **👉 One Sample Response from SpeechMedAssist**
 - **SpeechMedAssist2 Text Response:**
-> 处理方式要看具体情况，可能是药物治疗或者再次清宫。关键是早发现早治疗，避免感染和其他并发症。记得保持个人卫生，避免性生活直到医生说可以。
+> 📃处理方式要看具体情况，可能是药物治疗或者再次清宫。关键是早发现早治疗，避免感染和其他并发症。记得保持个人卫生，避免性生活直到医生说可以。
 
 - **SpeechMedAssist2 Audio Response:**
 > [**🔊click to play**](https://github.com/user-attachments/assets/aa7a38e9-14d1-4fab-ae18-391514076849)
