@@ -7,6 +7,7 @@ SpeechMedAssist is a SpeechLM designed for speech-based multi-turn medical consu
 
 ## DEMO for comparison among different models
 **👉 You can open [online demo](https://sirrychen.github.io/blogs/2025-09-22-SpeechMedAssist.html)** 
+
 **👉 or you can download this repository and open [`index.html`](./demo_package/index.html) in your local browser to view the demo.**
 
 **👉 One Sample Response from SpeechMedAssist**
