@@ -1,9 +1,0 @@
-[DIR] MedDG
-    [FILE] predata.py
-    [FILE] train.txt
-    [FILE] MedDG-sharegpt.json
-    [FILE] test.txt
-    [FILE] dev.txt
-    [FILE] MedDG-sharegpt-test.json
-    [DIR] .ipynb_checkpoints
-        [FILE] predata-checkpoint.py
