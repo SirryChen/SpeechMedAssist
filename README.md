@@ -2,6 +2,8 @@
 
 SpeechMedAssist is a SpeechLM designed for speech-based multi-turn medical consultation, which can natively analyze symptoms, conduct proactive inquiries, and provide diagnostic and treatment suggestions.
 
+[![arXiv](https://img.shields.io/badge/arXiv-2505.02625-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2601.04638)
+
 ![Data construction, model architecture, and training strategy](./image/main.svg)
 
 
@@ -372,4 +374,15 @@ Almost the same as the single-turn Q&A.
 
 ## Code Usage
 - [LLaMA-Omni2](https://github.com/ictnlp/LLaMA-Omni2): Our model is built upon LLaMA-Omni2. We utilize its publicly available implementation for the core model code and have extended it with additional training modules.
+
+If our work is useful for you, please cite as:
+
+```
+@article{chen2026speechmedassist,
+  title={SpeechMedAssist: Efficiently and Effectively Adapting Speech Language Models for Medical Consultation},
+  author={Chen, Sirry and Wang, Jieyi and Chen, Wei and Wei, Zhongyu},
+  journal={arXiv preprint arXiv:2601.04638},
+  year={2026}
+}
+```
 
