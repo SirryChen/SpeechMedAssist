@@ -8,8 +8,8 @@ SpeechMedAssist is a SpeechLM designed for speech-based multi-turn medical consu
 
 [![arXiv](https://img.shields.io/badge/arXiv-2601.04638-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2601.04638) 
 [![GitHub](https://img.shields.io/badge/GitHub-Code-181717?logo=github&logoColor=white)](https://github.com/SirryChen/SpeechMedAssist)
-[![HuggingFace](https://img.shields.io/badge/Weight-SpeechMedAssist-yellow?logo=huggingface)](https://huggingface.co/SII-Sirry/SpeechMedAssist)
-[![HuggingFace](https://img.shields.io/badge/Dataset-SpeechMedDataset-yellow?logo=huggingface)](https://huggingface.co/datasets/SII-Sirry/SpeechMedDataset) 
+[![HuggingFace](https://img.shields.io/badge/Huggingface-Weight-yellow?logo=huggingface)](https://huggingface.co/SII-Sirry/SpeechMedAssist)
+[![HuggingFace](https://img.shields.io/badge/Huggingface-Dataset-yellow?logo=huggingface)](https://huggingface.co/datasets/SII-Sirry/SpeechMedDataset) 
 [![WeChat](https://img.shields.io/badge/WeChat-Post-07C160?logo=wechat&logoColor=white)](https://mp.weixin.qq.com/s/2bx3dmaVIsT6cP6h4UzE4A)
 [![Demo](https://img.shields.io/badge/Demo-MayBeOnline-4CAF50?logo=google-chrome&logoColor=white)](https://speech.medassist.chat/)
 
