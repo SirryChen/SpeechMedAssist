@@ -16,8 +16,8 @@ SpeechMedAssist is a SpeechLM designed for speech-based multi-turn medical consu
 ![Data construction, model architecture, and training strategy](./image/main.svg)
 
 
-## DEMO for comparison among different models
-**👉 You can open [`online interactive demo`](https://speech.medassist.chat/) or [online example](https://sirrychen.github.io/blogs/2025-09-22-SpeechMedAssist.html)** 
+## Demo for Preview
+**👉 You can open [`online interactive demo`](https://speech.medassist.chat/) (maybe expired) or [online example](https://sirrychen.github.io/blogs/2025-09-22-SpeechMedAssist.html)** 
 
 **👉 or you can download this repository and open [`index.html`](./demo_package/index.html) in your local browser to view the demo.**
 
@@ -29,9 +29,31 @@ SpeechMedAssist is a SpeechLM designed for speech-based multi-turn medical consu
 > [**🔊click to play**](https://github.com/user-attachments/assets/aa7a38e9-14d1-4fab-ae18-391514076849)
 
 
-## 0.Environment
+## Quick Start for Inference
+1. Prepare all the things
+    ```shell
+    git clone https://github.com/SirryChen/SpeechMedAssist.git
+    cd SpeechMedAssist
+    conda create -n sma python=3.10
+    conda activate sma
+    pip install -r requirements.txt
+    wget https://openaipublic.azureedge.net/main/whisper/models/e5b1a55b89c1367dacf97e3e19bfd829a01529dbfdeefa8caeb59b3f1b81dadb/large-v3.pt -O ./weight/whisper/large-v3.pt
+    hf download ICTNLP/cosy2_decoder --local-dir ./weight/cosy2_decoder
+    hf download SII-Sirry/SpeechMedAssist --local-dir ./weight/stage3
+    
+    ```
 
-To run our model, the following steps are required:
+2. Run an interactive demo in terminal
+    ```shell
+    cd inference
+    python interact_SpeechMedAssist.py --s2s --model_path ../weight/stage3 --speech_decoder_path ../weight/cosy2_decoder 
+    ```
+
+## Go Through the Whole Project
+
+### 0.Environment
+
+To reproduce this work, the following steps are required:
 ```shell
 conda create -n SpeechMedAssist python=3.10
 pip install -r requirements.txt
@@ -51,7 +73,7 @@ pip install -r requirements_shizhengpt.txt
 ```
 
 
-## 1.Download Data
+### 1.Download Data
 
 [[Aishell2]](https://aishelltech.com/aishell_2)
 [[Aishell3]](https://aishelltech.com/aishell_3)
@@ -66,7 +88,7 @@ huggingface-cli download --resume-download FreedomIntelligence/CMB --repo-type d
 ```
 
 
-## 2.Download Weight
+### 2.Download Weight
 ```shell
 # base model
 huggingface-cli download --resume-download ICTNLP/LLaMA-Omni2-7B-Bilingual --local-dir ./weight/LLaMA-Omni2-7B-Bilingual
@@ -90,7 +112,7 @@ huggingface-cli download --resume-download FreedomIntelligence/ShizhenGPT-7B-Omn
 ...
 ```
 
-## 3.Predata
+### 3.Predata
 
 You can construct the dataset step by step by following the pipeline described in [`PREDATA.md`](./data/PREDATA.md). The process consists of four stages: **Filter**, **Rewrite**, **Get Patient Info**, and **Synthesize**.
 
@@ -100,7 +122,7 @@ Alternatively, you can skip the preprocessing steps and directly download the pr
 hf download SII-Sirry/SpeechMedDataset --repo-type dataset --local-dir ./dataset/SpeechMedDataset
 ```
 
-## 4.Train
+### 4.Train
 Run the following command to train the model and get the final weight.
 
 ```shell
@@ -115,9 +137,9 @@ hf download SII-Sirry/SpeechMedAssist --local-dir ./weight/stage3
 ```
 
 
-## 5.Eval
+### 5.Eval
 
-### 5.1 Single-Turn Q&A
+#### 5.1 Single-Turn Q&A
 The eval code includes the following three parts: 
 - [[CMB]](./eval/CMB/eval_CMB.py) 
 - [[CMExam]](./eval/CMExam/eval_CMExam.py) 
@@ -125,9 +147,9 @@ The eval code includes the following three parts:
 - Ency: [[dialog record]](./eval/single_round/dialog_record.py) to record the conversation between the model and the patient, [[eval]](./eval/single_round/evaluation.py) for evaluation
 
 
-### 5.2 Multi-Turn Conversation
+#### 5.2 Multi-Turn Conversation
 
-#### 5.2.1 First get the record of the conversation between the tested model as a doctor and the virtual patient through [`dialog_record.py`](./eval/conversation/dialog_record.py)
+##### 5.2.1 First get the record of the conversation between the tested model as a doctor and the virtual patient through [`dialog_record.py`](./eval/conversation/dialog_record.py)
 
 <details>
 <summary>details of arguments and example command</summary>
@@ -162,7 +184,7 @@ python dialog_record.py \
 
 </details>
 
-#### 5.2.2 Then evaluate the performance of the tested model through [`evaluation.py`](./eval/conversation/evaluation.py)
+##### 5.2.2 Then evaluate the performance of the tested model through [`evaluation.py`](./eval/conversation/evaluation.py)
 
 <details open>
 <summary>example command</summary>
@@ -178,7 +200,7 @@ python evaluation.py \
 ```
 </details>
 
-### 5.3 Wild
+#### 5.3 Wild
 
 Almost the same as the single-turn Q&A.
 

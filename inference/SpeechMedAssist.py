@@ -293,7 +293,7 @@ class SpeechMedAssist:
 
 
 if __name__ == "__main__":
-    model = SpeechMedAssist(model_path="../weight/stage2-cough2", input_speech=True, output_speech=False)
+    model = SpeechMedAssist(model_path="../weight/stage3", input_speech=True, output_speech=False)
     print(model.reply([
         {
             "from": "user",
