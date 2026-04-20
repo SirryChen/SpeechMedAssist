@@ -2,8 +2,6 @@
 
 > ⭐ Accepted by ACL 2026 Main Conference
 
-
-
 SpeechMedAssist is a SpeechLM designed for speech-based multi-turn medical consultation, which can natively analyze symptoms, conduct proactive inquiries, and provide diagnostic and treatment suggestions.
 
 [![arXiv](https://img.shields.io/badge/arXiv-2601.04638-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2601.04638) 
@@ -15,6 +13,7 @@ SpeechMedAssist is a SpeechLM designed for speech-based multi-turn medical consu
 
 ![Data construction, model architecture, and training strategy](./image/main.svg)
 
+---
 
 ## Demo for Preview
 **👉 You can open [`online interactive demo`](https://speech.medassist.chat/) (maybe expired) or [online example](https://sirrychen.github.io/blogs/2025-09-22-SpeechMedAssist.html)** 
@@ -28,6 +27,7 @@ SpeechMedAssist is a SpeechLM designed for speech-based multi-turn medical consu
 - **SpeechMedAssist2 Audio Response:**
 > [**🔊click to play**](https://github.com/user-attachments/assets/aa7a38e9-14d1-4fab-ae18-391514076849)
 
+---
 
 ## Quick Start for Inference
 1. Prepare all the things
@@ -48,6 +48,8 @@ SpeechMedAssist is a SpeechLM designed for speech-based multi-turn medical consu
     cd inference
     python interact_SpeechMedAssist.py --s2s --model_path ../weight/stage3 --speech_decoder_path ../weight/cosy2_decoder 
     ```
+
+---
 
 ## Go Through the Whole Project
 
