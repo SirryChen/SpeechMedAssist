@@ -4,7 +4,7 @@
 
 SpeechMedAssist is a SpeechLM designed for speech-based multi-turn medical consultation, which can natively analyze symptoms, conduct proactive inquiries, and provide diagnostic and treatment suggestions.
 
-[![arXiv](https://img.shields.io/badge/arXiv-2601.04638-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2601.04638) 
+[![arXiv](https://img.shields.io/badge/arXiv-2601.04638-b31b1b.svg?logo=arXiv)](https://arxiv.org/pdf/2601.04638v2) 
 [![GitHub](https://img.shields.io/badge/GitHub-Code-181717?logo=github&logoColor=white)](https://github.com/SirryChen/SpeechMedAssist)
 [![HuggingFace](https://img.shields.io/badge/Huggingface-Weight-yellow?logo=huggingface)](https://huggingface.co/SII-Sirry/SpeechMedAssist)
 [![HuggingFace](https://img.shields.io/badge/Huggingface-Dataset-yellow?logo=huggingface)](https://huggingface.co/datasets/SII-Sirry/SpeechMedDataset) 
