@@ -140,12 +140,9 @@ class OpenS2S:
             speech_output_dir: 语音输出目录（暂时不使用）
             system_prompt: 系统提示词
         """
-        if "stage" in model_path:
-            system_prompt = "You are SpeechMedAssist, a medical dialogue assistant capable of processing both speech and text questions from patients, and generating speech and text. You can communicate with patients, provide analysis of their condition, ask about more information multiple times if the condition is not clear, and offer final medical consultation advice when information is sufficient."
-        else:
-            system_prompt = "You are a helpful assistant."
+        system_prompt = "You are SpeechMedAssist, a medical dialogue assistant capable of processing both speech and text questions from patients, and generating speech and text. You can communicate with patients, provide analysis of their condition, ask about more information multiple times if the condition is not clear, and offer final medical consultation advice when information is sufficient."
 
-            self.model_path = model_path
+        self.model_path = model_path
         self.input_speech = input_speech
         self.output_speech = output_speech
         self.speech_output_dir = speech_output_dir
